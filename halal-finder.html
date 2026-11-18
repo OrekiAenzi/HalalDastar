@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HalalDastar: halal you can see</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=El+Messiri:wght@500;700&family=Amiri:wght@700&family=Hind:wght@400;500;600&display=swap">
+<style>
+:root{--cloth:#6e1423;--cloth2:#4a0c18;--gold:#d2ab5f;--paper:#f7f0e1;--card:#fffaf0;--ink:#2b1a14;--mute:#6f5d54;--line:#e3d6bc;--ok:#1d6b4f;--okbg:#dff0e6;--bad:#d4262c;--badbg:#fde7e6;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#241519;--card:#2f1d22;--ink:#f3e9d8;--mute:#bfa99b;--line:#4a3036;--ok:#74d9a8;--okbg:#17332a;--bad:#ff8077;--badbg:#3a1a1b}}
+:root[data-theme="dark"]{--paper:#241519;--card:#2f1d22;--ink:#f3e9d8;--mute:#bfa99b;--line:#4a3036;--ok:#74d9a8;--okbg:#17332a;--bad:#ff8077;--badbg:#3a1a1b}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 Hind,system-ui,sans-serif}
+h1,h2,h3,.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;letter-spacing:.01em}
+a{color:inherit}:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.w{max-width:1040px;margin:0 auto;padding:0 20px}
+.cloth{background:radial-gradient(ellipse at 30% 0%,#8a1c30 0%,var(--cloth) 55%,var(--cloth2) 100%);color:#f8eedd}
+.band{height:7px;background:var(--cloth2);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 1.7rem "Cormorant Garamond",Georgia,serif;letter-spacing:.03em}
+.navl{display:flex;gap:20px;font-size:.92rem;align-items:center}.navl a{text-decoration:none;opacity:.9}.navl a.pill{border:1px solid var(--gold);color:var(--gold);padding:6px 16px;border-radius:99px;opacity:1}
+.hero{padding:24px 0 56px}.hero .w{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,7vw,4.2rem);line-height:1;margin:0 0 14px}.hero h1 em{color:var(--gold);font-style:italic}
+.hero p{color:#e8d6c2;max-width:46ch;margin:0 0 22px}
+.search{background:rgba(0,0,0,.22);border:1px solid rgba(210,171,95,.45);border-radius:14px;padding:16px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button,input,select{font:inherit;color:inherit}
+.btn{background:var(--gold);color:#2a1a05;border:0;border-radius:10px;padding:11px 18px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+input[type=text],select,textarea{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:11px 12px;flex:1;min-width:120px;width:100%}
+.search label{font-size:.9rem;color:#e8d6c2}input[type=range]{flex:1;min-width:110px;accent-color:var(--gold)}
+.note{font-size:.85rem;color:var(--gold);margin:10px 0 0}
+.stats{display:flex;gap:26px;margin-top:22px}.stats b{display:block;font:700 1.9rem "Cormorant Garamond",serif;color:var(--gold)}.stats span{font-size:.82rem;color:#d9c3ad}
+#radar{width:100%;max-width:360px;display:block;margin:0 auto;filter:drop-shadow(0 14px 22px rgba(0,0,0,.45))}
+section.s{padding:52px 0}h2{font-size:clamp(1.9rem,5vw,2.6rem);margin:0 0 6px}.sub{color:var(--mute);margin:0 0 24px;max-width:56ch}
+.card{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--bad);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.card.v{border-top-color:var(--ok)}
+.card>button{width:100%;text-align:left;background:none;border:0;padding:16px 18px;cursor:pointer;display:flex;gap:14px;justify-content:space-between;align-items:center}
+.name{font:700 1.45rem "Cormorant Garamond",Georgia,serif}.meta{color:var(--mute);font-size:.9rem}
+.tag{display:inline-block;border-radius:99px;padding:3px 12px;font-size:.8rem;font-weight:600;background:var(--badbg);color:var(--bad);white-space:nowrap}
+.card.v .tag{background:var(--okbg);color:var(--ok)}
+.chips{margin-top:4px}.chip{display:inline-block;font-size:.75rem;border:1px solid var(--line);color:var(--mute);border-radius:99px;padding:1px 9px;margin-right:5px}
+.detail{display:none;padding:2px 18px 18px;border-top:1px dashed var(--line)}.card.open .detail{display:block}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:14px 0}dt{color:var(--mute)}dd{margin:0}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin:10px 0}
+.gal img,.ph{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;font-size:.8rem;color:var(--mute);border-style:dashed;padding:6px}
+.rev{border-left:3px solid var(--gold);padding:2px 12px;margin:8px 0;font-size:.95rem}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 4px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+.step{border-top:2px solid var(--gold);padding-top:12px}.step h3{margin:0 0 4px;font-size:1.5rem}.step p{margin:0;color:#e8d6c2;font-size:.95rem}
+.step:before{counter-increment:s;content:counter(s);font:700 1.7rem "Cormorant Garamond",serif;color:var(--gold)}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 28px;margin:0 0 24px;padding:0;list-style:none}
+.list li{padding-left:22px;position:relative}.list li:before{content:"";position:absolute;left:0;top:.65em;width:7px;height:7px;border-radius:50%;background:var(--cloth)}
+@media (prefers-color-scheme:dark){.list li:before{background:var(--gold)}}
+footer{padding:30px 0;font-size:.88rem;color:#d9c3ad}footer b{font:700 1.4rem "Cormorant Garamond",serif;color:#f8eedd}
+@media (max-width:760px){.hero .w,.steps,.list{grid-template-columns:1fr}.navl a:not(.pill){display:none}}
+h1,h2,h3,.logo,.name,.stats b,.step:before,footer b{font-family:"El Messiri",Georgia,serif}
+.logo{display:inline-block;letter-spacing:.02em}
+.hero h1 em{font-style:normal}
+.ar{display:block;text-align:left;font:700 1.7rem Amiri,serif;color:var(--gold);margin-bottom:6px}
+.cloth{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cg fill='%23d2ab5f' fill-opacity='.2'%3E%3Ccircle cx='36' cy='24' r='6'/%3E%3Ccircle cx='36' cy='48' r='6'/%3E%3Ccircle cx='24' cy='36' r='6'/%3E%3Ccircle cx='48' cy='36' r='6'/%3E%3Ccircle cx='36' cy='36' r='3'/%3E%3Ccircle cx='0' cy='0' r='2.5'/%3E%3Ccircle cx='72' cy='0' r='2.5'/%3E%3Ccircle cx='0' cy='72' r='2.5'/%3E%3Ccircle cx='72' cy='72' r='2.5'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.6) 100%),radial-gradient(ellipse at 30% 0%,#8a1c30 0%,var(--cloth) 55%,var(--cloth2) 100%);background-size:72px 72px,auto,auto}
+.cloth{background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.6) 100%),radial-gradient(ellipse at 30% 0%,#8a1c30 0%,var(--cloth) 55%,var(--cloth2) 100%);background-size:auto;position:relative;overflow:hidden;isolation:isolate}
+.cloth::before{content:attr(data-t);position:absolute;inset:-12px;z-index:-1;font:700 2.1rem/2.2 Amiri,serif;color:#d2ab5f;opacity:.085;direction:rtl;text-align:justify;word-spacing:.5em;overflow:hidden;pointer-events:none}
+.ar{display:block;text-align:left;font:700 1.25rem/1.7 Amiri,serif;margin:2px 0 0;letter-spacing:0}
+.hero h1{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:clamp(2.2rem,6vw,3.7rem);line-height:1.1;letter-spacing:-.01em}
+.hero h1 em{font-style:italic}
+footer b.fl{display:block;font-size:2.7rem;line-height:1.1;letter-spacing:.02em}
+footer b.fl span{color:var(--gold)}
+footer .w{border-top:1px solid rgba(210,171,95,.55);padding-top:26px}
+footer p{color:#e8d6c2;max-width:60ch;margin:12px 0 0}
+</style>
+</head>
+<body>
+<header class="cloth"><div class="w"><nav>
+<div><a class="logo" href="#top" id="top">Halal<span style="color:var(--gold)">Dastar</span></a><span class="ar" lang="ar" dir="rtl">حلال · موثّق</span></div>
+<div class="navl"><a href="#find">Find</a><a href="#method">How we verify</a><a class="pill" href="#list">List your restaurant</a></div></nav>
+<div class="hero"><div class="w">
+<div><h1>Don’t just hope it’s halal. <em>See the proof.</em></h1>
+<p>Our team visits every restaurant in this guide. We check the halal certificate, trace the meat back to its supplier, and photograph the kitchen. You see exactly what we saw.</p>
+<div class="search">
+<div class="row"><button class="btn" id="loc">Use my location</button><input type="text" id="q" placeholder="Search name or cuisine" aria-label="Search restaurants"></div>
+<div class="row" style="margin-top:12px"><label for="rad">Distance</label><input type="range" id="rad" min="1" max="20" value="8"><strong id="radv">8 km</strong></div>
+<div class="row" style="margin-top:10px"><select id="fil" aria-label="Filter"><option value="all">All places</option><option value="ver">Verified only</option><option value="full">Fully halal only</option><option value="pray">With prayer space</option></select></div>
+<p class="note" id="status">Demo listings shown near Charminar, Hyderabad.</p></div>
+<div class="stats"><div><b id="s1">0</b><span>verified places</span></div><div><b>3</b><span>checks on every place</span></div><div><b>0</b><span>badges ever sold</span></div></div></div>
+<svg id="radar" viewBox="-112 -112 224 224" role="img" aria-label="Plate showing restaurants around you"></svg>
+</div></div></div><div class="band"></div></header>
+
+<section class="s" id="find"><div class="w">
+<h2 id="count">Nearby restaurants</h2>
+<p class="sub">Green: visited and verified by our team. Red: not yet checked, so the halal claim is unconfirmed.</p>
+<div id="list"></div></div></section>
+
+<section class="s cloth" id="method"><div class="w">
+<h2>How a restaurant earns the badge:</h2>
+<p class="sub" style="color:#e8d6c2">Three checks, done in person and recorded. A restaurant that fails any one of them is never shown as verified.</p>
+<div class="steps">
+<div class="step"><h3>Certificate:</h3><p>We ask to see the original halal certificate, and record who issued it and when it expires. A photo goes on the listing, so you can read it yourself.</p></div>
+<div class="step"><h3>Supplier:</h3><p>We trace the meat back to its supplier and check the supplier’s own papers, not just the restaurant’s word.</p></div>
+<div class="step"><h3>Kitchen:</h3><p>We visit in person, photograph what we are permitted to, and date-stamp the check. Badges lapse, and every place is inspected again.</p></div></div></div></section>
+<div class="band"></div>
+
+<section class="s" id="list"><div class="w">
+<h2>List your restaurant:</h2>
+<p class="sub">Free to list. Free to verify. The badge is earned, never sold, and that is why diners trust it.</p>
+<ul class="list"><li>Reach diners who search for halal first</li><li>Put your certificate and supplier on display</li><li>Show your menu and kitchen before they walk in</li><li>Collect reviews on the one thing that matters: was it halal?</li></ul>
+<a class="btn" href="https://wa.me/910000000000?text=I%20would%20like%20to%20list%20my%20restaurant%20on%20HalalDastar" target="_blank" rel="noopener">Message us on WhatsApp</a></div></section>
+
+<footer class="cloth"><div class="w"><b class="fl">Halal<span>Dastar</span></b><span class="ar" lang="ar" dir="rtl">حلال · موثّق</span><p>HalalDastar is an independent verification guide. We do not issue halal certificates: we check the ones restaurants already hold. Listings on this demo are placeholders.</p></div></footer>
+
+<script>
+// Replace with real, checked places. Entries below are dummy placeholders.
+// Optional per place: menu:[urls], certImg:"url", photos:[urls]
+var DATA=[
+{id:1,name:"Sample Biryani House",cuisine:"Hyderabadi",lat:17.3616,lng:78.4747,since:1998,full:true,prayer:true,cert:"Sample Halal Board",certDate:"2025-03",supplier:"Sample Meats Pvt Ltd",verified:"2026-10-12"},
+{id:2,name:"Sample Kebab Corner",cuisine:"Mughlai",lat:17.3700,lng:78.4900,since:2010,full:true,prayer:false,cert:"Sample Halal Board",certDate:"2024-11",supplier:"Al-Sample Poultry",verified:"2026-09-30"},
+{id:3,name:"Sample Haleem Stop",cuisine:"Street food",lat:17.3550,lng:78.4650,since:2015,full:false,prayer:false,cert:null,certDate:null,supplier:null,verified:null},
+{id:4,name:"Sample Cafe Irani",cuisine:"Cafe",lat:17.3800,lng:78.4800,since:1965,full:true,prayer:true,cert:"Sample Halal Board",certDate:"2025-07",supplier:"Sample Meats Pvt Ltd",verified:"2026-11-02"},
+{id:5,name:"Sample Grill Station",cuisine:"Arabic",lat:17.4200,lng:78.4500,since:2019,full:false,prayer:false,cert:null,certDate:null,supplier:null,verified:null},
+{id:6,name:"Sample Dum Kitchen",cuisine:"Biryani",lat:17.4400,lng:78.5000,since:2021,full:true,prayer:true,cert:"Sample Halal Board",certDate:"2026-01",supplier:"Al-Sample Poultry",verified:"2026-08-18"}
+];
+var me={lat:17.3616,lng:78.4747},reviews={},WA="910000000000";
+try{reviews=JSON.parse(localStorage.getItem("hd_rev")||"{}")}catch(e){}
+var $=function(i){return document.getElementById(i)};
+function km(a,b,c,d){var r=Math.PI/180,x=(c-a)*r,y=(d-b)*r,h=Math.sin(x/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin(y/2)**2;return 12742*Math.asin(Math.sqrt(h))}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function gal(list,ph,alt){return '<div class="gal">'+(list&&list.length?list:[null]).map(function(u){return u?'<a href="'+esc(u)+'" target="_blank" rel="noopener"><img src="'+esc(u)+'" alt="'+alt+'" loading="lazy"></a>':'<div class="ph">'+ph+'</div>'}).join('')+'</div>'}
+function media(p){return '<strong>Menu</strong>'+gal(p.menu,'Menu photo goes here','Menu page')+'<strong>Halal certificate</strong>'+gal(p.certImg?[p.certImg]:[],'Certificate photo goes here','Halal certificate')+'<strong>Photos by our team</strong>'+gal(p.photos,'Kitchen or counter photo goes here','Photo taken by our team')}
+function render(){
+var R=+$("rad").value,q=$("q").value.toLowerCase(),f=$("fil").value;$("radv").textContent=R+" km";
+$("s1").textContent=DATA.filter(function(p){return p.verified}).length;
+var res=DATA.map(function(p){return Object.assign({d:km(me.lat,me.lng,p.lat,p.lng)},p)}).filter(function(p){return p.d<=R&&(f!="ver"||p.verified)&&(f!="full"||p.full)&&(f!="pray"||p.prayer)&&(p.name+p.cuisine).toLowerCase().indexOf(q)>-1}).sort(function(a,b){return a.d-b.d});
+$("count").textContent="Nearby: "+res.length+(res.length==1?" restaurant":" restaurants")+" within "+R+" km";
+var s='<circle r="108" fill="#4a0c18"/><circle r="100" fill="var(--paper)" stroke="#d2ab5f" stroke-width="3"/><circle r="60" fill="none" stroke="#d2ab5f" stroke-opacity=".35"/><circle r="5" fill="var(--ink)"/>';
+res.forEach(function(p){var a=Math.atan2(p.lat-me.lat,p.lng-me.lng),r=p.d/R*92;s+='<circle cx="'+(Math.cos(a)*r).toFixed(1)+'" cy="'+(-Math.sin(a)*r).toFixed(1)+'" r="7" fill="'+(p.verified?'#1d8a63':'#d4262c')+'" stroke="#fff" stroke-width="1.5"/>'});
+$("radar").innerHTML=s;
+$("list").innerHTML=res.length?res.map(function(p){var rv=reviews[p.id]||[],dir="https://www.google.com/maps/dir/?api=1&destination="+p.lat+","+p.lng+"&travelmode=driving";
+return '<div class="card'+(p.verified?' v':'')+'" data-id="'+p.id+'"><button aria-expanded="false"><span><span class="name">'+esc(p.name)+'</span><br><span class="meta">'+esc(p.cuisine)+', '+p.d.toFixed(1)+' km away</span><span class="chips"><span class="chip">'+(p.full?'Fully halal':'Partly halal')+'</span>'+(p.prayer?'<span class="chip">Prayer space</span>':'')+'</span></span><span class="tag">'+(p.verified?'Verified':'Not yet verified')+'</span></button>'+
+'<div class="detail"><div class="acts"><a class="btn" target="_blank" rel="noopener" href="'+dir+'">Get directions</a><a class="btn ghost" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(p.name+" on HalalDastar: "+dir)+'">Share on WhatsApp</a></div>'+media(p)+
+'<dl><dt>Open since</dt><dd>'+p.since+'</dd><dt>Certified by</dt><dd>'+(p.cert?esc(p.cert)+' ('+p.certDate+')':'No certificate on record')+'</dd><dt>Meat supplier</dt><dd>'+(p.supplier?esc(p.supplier):'Not confirmed')+'</dd><dt>Last checked</dt><dd>'+(p.verified||'Never')+'</dd></dl>'+
+'<strong>Reviews</strong>'+(rv.length?rv.map(function(r){return '<div class="rev"><b>'+r.s+'/5</b> '+esc(r.t)+'</div>'}).join(''):'<div class="meta">No reviews yet.</div>')+
+'<div class="row" style="margin-top:10px"><select aria-label="Your rating" class="rs" style="flex:0 0 90px;min-width:90px"><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select><input type="text" class="rt" placeholder="Was the halal claim true?" aria-label="Your review"><button class="btn ghost radd">Post review</button></div>'+
+'<p class="meta" style="margin:12px 0 0"><a target="_blank" rel="noopener" href="https://wa.me/'+WA+'?text='+encodeURIComponent("Report a problem with "+p.name)+'">Report a problem with this listing</a></p></div></div>'}).join(""):'<p class="sub">Nothing within this distance. Increase the distance or clear the filters.</p>'}
+$("list").addEventListener("click",function(e){var c=e.target.closest(".card");if(!c)return;
+if(e.target.classList.contains("radd")){var t=c.querySelector(".rt").value.trim();if(!t)return;var id=c.dataset.id;(reviews[id]=reviews[id]||[]).push({s:c.querySelector(".rs").value,t:t});try{localStorage.setItem("hd_rev",JSON.stringify(reviews))}catch(x){}render();$("list").querySelector('[data-id="'+id+'"]').classList.add("open");return}
+var b=e.target.closest("button");if(b&&b.parentNode===c){var o=c.classList.toggle("open");b.setAttribute("aria-expanded",o)}});
+["rad","q","fil"].forEach(function(i){$(i).addEventListener("input",render)});
+$("loc").addEventListener("click",function(){if(!navigator.geolocation){$("status").textContent="Location is not available in this browser.";return}
+navigator.geolocation.getCurrentPosition(function(p){me={lat:p.coords.latitude,lng:p.coords.longitude};$("status").textContent="Using your location. Sample data is centred on Hyderabad.";render()},function(){$("status").textContent="Location was blocked. Allow it in your browser settings."})});
+render();
+document.querySelectorAll(".cloth").forEach(function(e){e.setAttribute("data-t","حلال طيب · بركة · تصديق · ".repeat(90))});
+</script>
+</body>
+</html>
